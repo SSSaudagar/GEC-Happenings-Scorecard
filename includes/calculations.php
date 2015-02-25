@@ -72,15 +72,16 @@ function acescore($college){
     return $score;
 }
 function trumpscore($college){
-    $sql="select count(*) as count from winners natural join events join event_type on type=id where college_id={$college}  and name='trump'";
+    $sql="select count(*) as count from register natural join events join event_type on type=id where college_id={$college}  and name='trump'";
     $result=mysql_query($sql);
     $row=mysql_fetch_assoc($result);
     if($row['count']==0) return 0;
+    $score=100;
     $sql="select place  from winners natural join events join event_type on type=id where college_id={$college}  and name='trump' ";
     $result=mysql_query($sql);
     $row=mysql_fetch_assoc($result);
     switch($row['place']){
-        case 0: $score=100; break;
+//        case 0: $score=100; break;
         case 1: $score=500; break;
         case 2: $score=400; break;
         case 3: $score=300; break;
