@@ -1,1 +1,1 @@
-# GEC-Happinings-Scorecard
+# GEC-Happenings-Scorecard
