@@ -10,6 +10,7 @@ function joker_penalty($college){
     }else{
         $score=0;
     }
+//    echo "penalty:{$score}";
     return $score;
 }
 function getcount($college,$joker,$event,$place){
@@ -35,6 +36,7 @@ function kingscore($college){
     $score=$score + ($first * 800); 
     $score=$score + ($second * 600); 
     $score=$score + ($third * 400);
+//    echo "king:{$score}";
     return $score;
 }
 function queenscore($college){
@@ -54,6 +56,7 @@ function queenscore($college){
     $score=$score + ($first * 600); 
     $score=$score + ($second * 400); 
     $score=$score + ($third * 200);
+//    echo "queen:{$score}";
     return $score;
 }
 function acescore($college){
@@ -65,9 +68,14 @@ function acescore($college){
     $score=$score + ($first * 1000); 
     $score=$score + ($second * 800); 
     $score=$score + ($third * 600);
+//    echo "ace:{$score}";
     return $score;
 }
 function trumpscore($college){
+    $sql="select count(*) as count from winners natural join events join event_type on type=id where college_id={$college}  and name='trump'";
+    $result=mysql_query($sql);
+    $row=mysql_fetch_assoc($result);
+    if($row['count']==0) return 0;
     $sql="select place  from winners natural join events join event_type on type=id where college_id={$college}  and name='trump' ";
     $result=mysql_query($sql);
     $row=mysql_fetch_assoc($result);
@@ -77,6 +85,7 @@ function trumpscore($college){
         case 2: $score=400; break;
         case 3: $score=300; break;
     }
+//    echo "trump:{$score}";
     return $score;
 }
 function calcScore($college){
